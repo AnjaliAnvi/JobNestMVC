@@ -1,0 +1,343 @@
+﻿@model JobNestMVC.Models.JobDetails
+@{
+    ViewBag.Title = "JobDescription_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2></h2>
+
+<div class="job-description-container">
+
+    <div class="job-card">
+
+        <!-- COMPANY -->
+
+        <div class="company-section">
+
+            @*<div class="company-logo-box">
+
+                <img src="@Url.Content(Model.logo)"
+                     class="company-logo"
+                     alt="Company Logo" />
+
+            </div>*@
+
+            <div class="company-info">
+
+                <span class="company-label">
+                    COMPANY
+                </span>
+
+                <h2 class="company-name">
+                    @Model.Company
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- JOB TITLE -->
+
+        <h1 class="job-title">
+            @Model.job_title
+        </h1>
+
+
+        <!-- LOCATION -->
+
+        <div class="job-location">
+            📍 @Model.location
+        </div>
+
+
+        <!-- JOB DETAILS -->
+
+        <div class="details-grid">
+
+            <div class="detail-box">
+                <strong>Experience</strong>
+                <span>@Model.experience</span>
+            </div>
+
+            <div class="detail-box">
+                <strong>Salary</strong>
+                <span>@Model.salary</span>
+            </div>
+
+            <div class="detail-box">
+                <strong>Job Type</strong>
+                <span>@Model.job_type</span>
+            </div>
+
+            <div class="detail-box">
+                <strong>Status</strong>
+                <span>@Model.status</span>
+            </div>
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="job-content">
+
+            <h3>Job Description</h3>
+
+            <p>
+                @Model.description
+            </p>
+
+        </div>
+
+
+        <!-- QUALIFICATION -->
+
+        <div class="job-content">
+
+            <h3>Qualification</h3>
+
+            <p>
+                @Model.qualification
+            </p>
+
+        </div>
+
+
+        <!-- SKILLS -->
+
+        <div class="job-content">
+
+            <h3>Required Skills</h3>
+
+            <p>
+                @Model.skills
+            </p>
+
+        </div>
+
+
+        <!-- DATES -->
+
+        <div class="date-section">
+
+            <div>
+
+                <strong>Posted Date</strong>
+
+                <br />
+
+                @Model.posted_date.ToString("dd-MM-yyyy")
+
+            </div>
+
+
+            <div>
+
+                <strong>Last Date</strong>
+
+                <br />
+
+                @Model.last_date.ToString("dd-MM-yyyy")
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="message">
+
+                @TempData["Message"]
+
+            </div>
+        }
+
+
+        <!-- APPLY -->
+        <!-- APPLY -->
+
+    <div class="apply-section">
+
+        @if (ViewBag.Applied == true)
+        {
+            <button type="button"
+                    class="applied-btn"
+                    disabled>
+                ✓ Applied
+            </button>
+
+            <p class="already-message">
+                You are already applied for this job.
+            </p>
+        }
+        else
+        {
+            <a href="@Url.Action("ApplyJob_PageLoad", "JobDescription", new { id = Model.job_id })"
+               class="apply-btn">
+                Apply Now →
+            </a>
+        }
+
+    </div>
+
+    </div>
+
+</div>
+<style>
+
+    .job-description-container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 40px auto;
+        font-family: Arial, sans-serif;
+    }
+
+    .job-card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    }
+
+    .company-section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        background: #f5f9ff;
+        border-left: 5px solid #1976d2;
+        border-radius: 8px;
+    }
+
+    .company-logo-box {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .company-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    .company-label {
+        font-size: 11px;
+        color: #777;
+        font-weight: bold;
+    }
+
+    .company-name {
+        color: #0066cc;
+        margin: 5px 0;
+    }
+
+    .job-title {
+        margin-top: 30px;
+        color: #172b4d;
+    }
+
+    .job-location {
+        color: #66788a;
+        margin-top: 10px;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .detail-box {
+        background: #f8f9fb;
+        padding: 15px;
+        border-radius: 7px;
+    }
+
+        .detail-box strong {
+            display: block;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .detail-box span {
+            color: #333;
+        }
+
+    .job-content {
+        margin-top: 30px;
+    }
+
+        .job-content h3 {
+            color: #1976d2;
+        }
+
+        .job-content p {
+            line-height: 1.7;
+            color: #555;
+        }
+
+    .date-section {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        padding: 20px;
+        background: #f8f9fb;
+        border-radius: 8px;
+    }
+
+    .apply-section {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .apply-btn {
+        padding: 14px 35px;
+        background: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .apply-btn:hover {
+            background: #125ca8;
+        }
+
+    .applied-btn {
+        padding: 14px 35px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: not-allowed;
+    }
+
+    .already-message {
+        color: #28a745;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .message {
+        margin-top: 20px;
+        padding: 12px;
+        background: #e8f5e9;
+        color: #2e7d32;
+        border-radius: 6px;
+        text-align: center;
+    }
+</style>

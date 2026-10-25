@@ -1,0 +1,194 @@
+﻿@model JobNestMVC.Models.JobPost
+@{
+    ViewBag.Title = "JobPost_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .job-container {
+        width: 75%;
+        margin: 40px auto;
+        background: #ffffff;
+        padding: 35px 45px;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+    }
+
+    .job-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .job-header h2 {
+        color: #1f3c88;
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .job-header p {
+        color: #777;
+        font-size: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 11px 13px;
+        border: 1px solid #d5d9e2;
+        border-radius: 7px;
+        font-size: 14px;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #1f3c88;
+        box-shadow: 0 0 5px rgba(31,60,136,0.2);
+    }
+
+    .form-group textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .date-box input {
+        cursor: pointer;
+    }
+
+    .error {
+        color: #dc3545;
+        font-size: 13px;
+    }
+
+    .submit-area {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .submit-btn {
+        background: #1f3c88;
+        color: white;
+        border: none;
+        padding: 12px 35px;
+        border-radius: 7px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .submit-btn:hover {
+        background: #162d68;
+    }
+
+    .message {
+        display: block;
+        margin-top: 15px;
+        color: #198754;
+        font-weight: bold;
+    }
+</style>
+
+<div class="job-container">
+
+    <div class="job-header">
+        <h2>Post a Job</h2>
+        <p>Find the right candidate for your company</p>
+    </div>
+
+    @using (Html.BeginForm("JobPost_InsertClick", "JobPost", FormMethod.Post))
+    {
+  
+        <div class="form-group">
+            <label>Job Title :</label>
+            @Html.TextBoxFor(m => m.title)
+            @Html.ValidationMessageFor(m => m.title, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Job Description :</label>
+            @Html.TextAreaFor(m => m.desc)
+            @Html.ValidationMessageFor(m => m.desc, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Company Name :</label>
+            @Html.TextBoxFor(m => m.company)
+            @Html.ValidationMessageFor(m => m.company, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Qualification :</label>
+            @Html.TextBoxFor(m => m.qualification)
+            @Html.ValidationMessageFor(m => m.qualification, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Skills :</label>
+            @Html.TextAreaFor(m => m.skills)
+            @Html.ValidationMessageFor(m => m.skills, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Experience :</label>
+            @Html.TextBoxFor(m => m.experience)
+            @Html.ValidationMessageFor(m => m.experience, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Salary :</label>
+            @Html.TextBoxFor(m => m.salary)
+            @Html.ValidationMessageFor(m => m.salary, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Location :</label>
+            @Html.TextBoxFor(m => m.location)
+            @Html.ValidationMessageFor(m => m.location, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Job Type :</label>
+            @Html.TextBoxFor(m => m.Jobtype)
+            @Html.ValidationMessageFor(m => m.Jobtype, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group date-box">
+            <label>Posting Date :</label>
+            @Html.TextBoxFor(m => m.jpdate, "{0:yyyy-MM-dd}",
+                new { type = "date" })
+            @Html.ValidationMessageFor(m => m.jpdate, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group date-box">
+            <label>Last Date :</label>
+            @Html.TextBoxFor(m => m.jldate, "{0:yyyy-MM-dd}",
+                new { type = "date" })
+            @Html.ValidationMessageFor(m => m.jldate, "", new { @class = "error" })
+        </div>
+
+        <div class="form-group">
+            <label>Status :</label>
+            @Html.TextBoxFor(m => m.status)
+            @Html.ValidationMessageFor(m => m.status, "", new { @class = "error" })
+        </div>
+
+        <div class="submit-area">
+            <input type="submit" value="ADD JOB" class="submit-btn" />
+            <span class="message">
+                @Html.DisplayFor(m => m.jmsg)
+            </span>
+        </div>
+    }
+</div>

@@ -1,0 +1,223 @@
+﻿@{
+    ViewBag.Title = "UserHome";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    .user-home {
+        min-height: 80vh;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #f5f7fb, #eaf0ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home-container {
+        width: 100%;
+        max-width: 900px;
+        text-align: center;
+    }
+
+    .welcome-section {
+        margin-bottom: 40px;
+    }
+
+    .welcome-icon {
+        width: 75px;
+        height: 75px;
+        margin: 0 auto 18px;
+        background: #eef2ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+    }
+
+    .welcome-section h2 {
+        margin: 0;
+        font-size: 38px;
+        color: #1f2937;
+        font-weight: 700;
+    }
+
+    .welcome-section p {
+        margin-top: 10px;
+        color: #6b7280;
+        font-size: 16px;
+    }
+
+    .dashboard {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .dashboard-card {
+        width: 280px;
+        min-height: 190px;
+        padding: 35px 25px;
+        background: white;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.13);
+        }
+
+    .card-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-card h3 {
+        margin: 0 0 10px;
+        color: #1f2937;
+        font-size: 21px;
+    }
+
+    .dashboard-card p {
+        color: #6b7280;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 22px;
+    }
+
+    .dashboard-card a {
+        display: inline-block;
+        padding: 11px 22px;
+        border-radius: 8px;
+        background: #2563eb;
+        color: white !important;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+        .dashboard-card a:hover {
+            background: #1d4ed8;
+            text-decoration: none;
+        }
+
+    .password-card a {
+        background: #7c3aed;
+    }
+
+        .password-card a:hover {
+            background: #6d28d9;
+        }
+
+    @@media (max-width: 650px) {
+        .welcome-section h2 {
+            font-size: 30px;
+        }
+
+        .dashboard-card {
+            width: 100%;
+            max-width: 350px;
+        }
+    }
+</style>
+
+<div class="user-home">
+
+    ```
+    <div class="home-container">
+
+        <div class="welcome-section">
+
+            <div class="welcome-icon">
+                👤
+            </div>
+
+            <h2>Welcome to JobNest</h2>
+
+            <p>
+                Manage your profile and account settings
+            </p>
+
+        </div>
+
+        <div class="dashboard">
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <h3>User Profile</h3>
+
+                <p>
+                    View and manage your personal information and profile details.
+                </p>
+
+                @Html.ActionLink("View User Profile", "UserProfile_PageLoad", "UserProfile")
+
+            </div>
+
+            <div class="dashboard-card password-card">
+
+                <div class="card-icon">
+                    🔐
+                </div>
+
+                <h3>Security</h3>
+
+                <p>
+                    Change your password and keep your JobNest account secure.
+                </p>
+
+                @Html.ActionLink("Change Password", "ChangePswd_PageLoad", "ChangePswd")
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    💼
+                </div>
+
+                <h3>View Posted Jobs</h3>
+
+                <p>
+                    View and apply for jobs.
+                </p>
+
+                @Html.ActionLink("View Jobs", "JobsView_PageLoad", "JobView")
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📄
+                </div>
+
+                <h3>My Applications</h3>
+
+                <p>
+                    View the jobs you have applied for and check your application status.
+                </p>
+
+                @Html.ActionLink(
+                    "View My Applications",
+                    "MyApplications_PageLoad",
+                    "MyApplication"
+                )
+
+            </div>
+
+        </div>
+
+    </div>
+    ```
+
+</div>

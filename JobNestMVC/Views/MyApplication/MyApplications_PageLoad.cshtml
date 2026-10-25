@@ -1,0 +1,76 @@
+﻿@model List<JobNestMVC.Models.MyApplication>
+@{
+    ViewBag.Title = "MyApplications_PageLoad";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <h2>My Applications</h2>
+
+    @if (Model != null && Model.Count > 0)
+    {
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Applied Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+<tr>
+
+    <td>
+        @item.job_title
+    </td>
+
+    <td>
+        @item.Company
+    </td>
+
+    <td>
+        @item.application_date.ToString("dd-MM-yyyy")
+    </td>
+
+    <td>
+
+        @if (item.status == "Pending")
+        {
+<span class="badge bg-warning">
+    Pending
+</span> }
+                    else if (item.status == "Accepted")
+                    {
+<span class="badge bg-success">
+    Accepted
+</span> }
+                    else if (item.status == "Rejected")
+                    {
+<span class="badge bg-danger">
+    Rejected
+</span> }
+                    else
+                    {
+@item.status}
+
+    </td>
+
+</tr>                }
+
+    </tbody>
+
+</table> }
+            else
+            {
+<div class="alert alert-info">
+    You have not applied for any jobs yet.
+</div>}
+
+</div>

@@ -1,0 +1,326 @@
+﻿@model JobNestMVC.Models.InsertClass
+@{
+    ViewBag.Title = "UserInsert_PageLoad";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    .registration-page {
+        min-height: 90vh;
+        padding: 50px 20px;
+        background: linear-gradient(135deg, #f5f7fb, #eaf0ff);
+    }
+
+    .registration-container {
+        max-width: 850px;
+        margin: auto;
+        background: white;
+        padding: 40px 45px;
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+    }
+
+    .registration-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .registration-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 15px;
+        background: #eef2ff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 34px;
+    }
+
+    .registration-header h2 {
+        margin: 0;
+        font-size: 32px;
+        color: #1f2937;
+        font-weight: 700;
+    }
+
+    .registration-header p {
+        color: #6b7280;
+        margin-top: 8px;
+        font-size: 15px;
+    }
+
+    .registration-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 25px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="file"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+            background: white;
+        }
+
+            .form-group input[type="text"]:focus,
+            .form-group input[type="password"]:focus,
+            .form-group input[type="file"]:focus {
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+            }
+
+    .qualification-box {
+        grid-column: span 2;
+        padding: 20px;
+        background: #f8fafc;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .qualification-title {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 15px;
+    }
+
+    .qualification-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+        .qualification-options label {
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 9px 13px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #374151;
+            transition: 0.3s;
+        }
+
+            .qualification-options label:hover {
+                border-color: #2563eb;
+                background: #eff6ff;
+            }
+
+        .qualification-options input {
+            margin-right: 6px;
+        }
+
+    .file-box {
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px dashed #cbd5e1;
+    }
+
+    .submit-section {
+        grid-column: span 2;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .insert-button {
+        width: 180px;
+        padding: 13px;
+        border: none;
+        border-radius: 9px;
+        background: #2563eb;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .insert-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+    .success-message {
+        display: block;
+        margin-top: 15px;
+        color: #16a34a;
+        font-weight: 600;
+    }
+
+    .field-validation-error {
+        color: #dc2626;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    @@media (max-width: 700px) {
+        .registration-container {
+            padding: 30px 22px;
+        }
+
+        .registration-form {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full-width,
+        .qualification-box,
+        .submit-section {
+            grid-column: span 1;
+        }
+    }
+</style>
+
+<div class="registration-page">
+
+    ```
+    <div class="registration-container">
+
+        <div class="registration-header">
+
+            <div class="registration-icon">
+                👤
+            </div>
+
+            <h2>Create Your Profile</h2>
+
+            <p>Join JobNest and create your professional profile</p>
+
+        </div>
+
+        <div>
+            @using (Html.BeginForm("UserInsert_Click", "InsertUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="registration-form">
+
+                    <div class="form-group">
+                        <label>Name :</label>
+                        @Html.TextBoxFor(m => m.name)
+                        @Html.ValidationMessageFor(m => m.name)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email :</label>
+                        @Html.TextBoxFor(m => m.email)
+                        @Html.ValidationMessageFor(m => m.email)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone :</label>
+                        @Html.TextBoxFor(m => m.phone)
+                        @Html.ValidationMessageFor(m => m.phone)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Location :</label>
+                        @Html.TextBoxFor(m => m.location)
+                        @Html.ValidationMessageFor(m => m.location)
+                    </div>
+
+                    <div class="qualification-box">
+
+                        <span class="qualification-title">
+                            Qualification
+                        </span>
+
+                        <div class="qualification-options">
+                            @foreach (var item in Model.Myfavqual)
+                            {
+                                <label>
+                                    <input type="checkbox"
+                                           value="@item.value"
+                                           checked="@item.valuecheck"
+                                           name="selectedqul"
+                                           id="@item.value" />
+
+                                    @Html.Raw(@item.text)
+                                </label>
+                            }
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Experience :</label>
+                        @Html.TextBoxFor(m => m.experience)
+                        @Html.ValidationMessageFor(m => m.experience)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Username :</label>
+                        @Html.TextBoxFor(m => m.username)
+                        @Html.ValidationMessageFor(m => m.username)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Resume :</label>
+
+                        <div class="file-box">
+                            @Html.TextBox("resumes", "", new { Type = "file" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Photo :</label>
+
+                        <div class="file-box">
+                            @Html.TextBox("file", "", new { Type = "file" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password :</label>
+                        @Html.PasswordFor(m => m.pass)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password :</label>
+                        @Html.PasswordFor(m => m.cpassword)
+                        @Html.ValidationMessageFor(m => m.cpassword)
+                    </div>
+
+                    <div class="submit-section">
+
+                        <input type="submit"
+                               value="Insert"
+                               class="insert-button" />
+
+                        <span class="success-message">
+                            @Html.DisplayFor(m => m.usermsg)
+                        </span>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+
+    </div>
+    ```
+
+</div>

@@ -1,0 +1,177 @@
+﻿<style>
+    .company-home {
+        min-height: 75vh;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #f5f7fb, #eaf0ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home-container {
+        width: 100%;
+        max-width: 900px;
+        text-align: center;
+    }
+
+    .welcome-text {
+        margin-bottom: 40px;
+    }
+
+        .welcome-text h2 {
+            font-size: 38px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .welcome-text p {
+            font-size: 17px;
+            color: #6b7280;
+        }
+
+    .dashboard {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .dashboard-card {
+        width: 280px;
+        min-height: 180px;
+        background: white;
+        border-radius: 18px;
+        padding: 35px 25px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.13);
+        }
+
+    .card-icon {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-card h3 {
+        color: #1f2937;
+        margin-bottom: 10px;
+        font-size: 21px;
+    }
+
+    .dashboard-card p {
+        color: #6b7280;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-card a {
+        display: inline-block;
+        padding: 11px 22px;
+        background: #2563eb;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .dashboard-card a:hover {
+            background: #1d4ed8;
+            text-decoration: none;
+        }
+
+    .password-card a {
+        background: #7c3aed;
+    }
+
+        .password-card a:hover {
+            background: #6d28d9;
+        }
+</style>
+
+<div class="company-home">
+
+    <div class="home-container">
+
+        <div class="welcome-text">
+            <h2>Welcome to Company Dashboard</h2>
+            <p>Manage your company profile and account settings</p>
+        </div>
+
+        <div class="dashboard">
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🏢
+                </div>
+
+                <h3>Company Profile</h3>
+
+                <p>
+                    View and manage your company information and profile.
+                </p>
+
+                @Html.ActionLink("View Company Profile", "CompanyProfile_PageLoad", "CompanyProfile")
+
+            </div>
+
+            <div class="dashboard-card password-card">
+
+                <div class="card-icon">
+                    🔐
+                </div>
+
+                <h3>Security</h3>
+
+                <p>
+                    Change your password and keep your account secure.
+                </p>
+
+                @Html.ActionLink("Change Password", "ChangePswd_PageLoad", "ChangePswd")
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📋
+                </div>
+
+                <h3>Job Posting</h3>
+
+                <p>
+                    Post job vacancies in your company.
+                </p>
+
+                @Html.ActionLink("Add Jobs", "JobPost_InsertClick", "JobPost")
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <h3>Job Applications</h3>
+
+                <p>
+                    View applicants for your job posts and manage their applications.
+                </p>
+
+                @Html.ActionLink("View Applications", "ViewApplications_PageLoad", "CompanyApplication")
+
+
+                   
+
+            </div>
+
+        </div>
+
+    </div>

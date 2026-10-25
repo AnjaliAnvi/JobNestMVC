@@ -1,0 +1,107 @@
+﻿@model List<JobNestMVC.Models.CompanyApplication>
+@{
+    ViewBag.Title = "ViewApplications_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <h2>Job Applications</h2>
+
+    @if (Model != null && Model.Count > 0)
+    {
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Applicant Name</th>
+            <th>Experience</th>
+            <th>Location</th>
+            <th>Skills</th>
+            <th>Resume</th>
+            <th>Application Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+<tr>
+
+    <td>@item.job_title</td>
+
+    <td>@item.name</td>
+
+    <td>@item.experience</td>
+
+    <td>@item.location</td>
+
+    <td>@item.skills</td>
+
+    <td>
+        @if (!string.IsNullOrEmpty(item.resume))
+        {
+<a href="@Url.Content(item.resume)"
+   target="_blank">
+    View Resume
+</a>}
+    </td>
+
+    <td>
+        @item.application_date.ToString("dd-MM-yyyy")
+    </td>
+
+    <td>
+        @item.status
+    </td>
+
+    <td>
+
+        @if (item.status == "Pending")
+        {
+@Html.ActionLink(
+    "Accept",
+    "AcceptApplication",
+    "CompanyApplication",
+    new { id = item.application_id },
+    new { @class = "btn btn-success btn-sm" }
+)
+
+                        @Html.Raw("&nbsp;")
+
+                                                @Html.ActionLink(
+                                                    "Reject",
+                                                    "RejectApplication",
+                                                    "CompanyApplication",
+                                                    new { id = item.application_id },
+                                                    new { @class = "btn btn-danger btn-sm" }
+                                                ) }
+                                                                    else if (item.status == "Accepted")
+                                                                    {
+                                                <span class="text-success">
+                                                    Accepted
+                                                </span> }
+                                                                    else if (item.status == "Rejected")
+                                                                    {
+                                                <span class="text-danger">
+                                                    Rejected
+                                                </span>}
+
+    </td>
+
+</tr>                }
+
+    </tbody>
+
+</table> }
+            else
+            {
+<div class="alert alert-info">
+    No applications found.
+</div>}
+
+</div>

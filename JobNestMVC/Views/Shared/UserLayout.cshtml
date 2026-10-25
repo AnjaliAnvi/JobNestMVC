@@ -1,0 +1,66 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>@ViewBag.Title - JobNest</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                @Html.ActionLink("JobNest", "UserHome", "LoginDB",
+                         new { area = "" },
+                         new { @class = "navbar-brand" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>
+                        @Html.ActionLink("Home", "UserHome", "LoginDB")
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Find Jobs", "JobsView_PageLoad", "JobView")
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("My Applications", "MyApplications_PageLoad", "MyApplication")
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Profile", "UserProfile_PageLoad", "UserProfile")
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+        @RenderBody()
+
+        <hr />
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - JobNest</p>
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

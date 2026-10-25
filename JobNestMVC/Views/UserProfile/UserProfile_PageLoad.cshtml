@@ -1,0 +1,284 @@
+﻿@model JobNestMVC.Models.UserProfile
+@{
+    ViewBag.Title = "UserProfile_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .profile-page {
+        min-height: 85vh;
+        padding: 50px 20px;
+        background: linear-gradient(135deg, #f5f7fb, #eaf0ff);
+    }
+
+    .profile-container {
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+        .profile-header h2 {
+            margin: 0;
+            font-size: 34px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .profile-header p {
+            margin-top: 8px;
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+    .profile-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px 25px;
+    }
+
+    .profile-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .profile-field label {
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .profile-field input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            background: #f9fafb;
+            font-size: 15px;
+            color: #374151;
+            outline: none;
+        }
+
+    .document-section {
+        grid-column: span 2;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 22px;
+    }
+
+        .document-section label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+    .resume-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+        .resume-links a {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+            .resume-links a:hover {
+                background: #1d4ed8;
+                transform: translateY(-2px);
+                text-decoration: none;
+            }
+
+            .resume-links a:last-child {
+                background: #16a34a;
+            }
+
+                .resume-links a:last-child:hover {
+                    background: #15803d;
+                }
+
+    .photo-section {
+        grid-column: span 2;
+        text-align: center;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 25px;
+    }
+
+        .photo-section label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+    .profile-photo {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid white;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .button-section {
+        grid-column: span 2;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .update-button {
+        padding: 13px 40px;
+        border: none;
+        border-radius: 9px;
+        background: #2563eb;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .update-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+    .profile-message {
+        display: block;
+        margin-top: 12px;
+        color: #16a34a;
+        font-weight: 600;
+    }
+
+    @@media (max-width: 700px) {
+        .profile-container {
+            padding: 30px 22px;
+        }
+
+        .profile-content {
+            grid-template-columns: 1fr;
+        }
+
+        .document-section,
+        .photo-section,
+        .button-section {
+            grid-column: span 1;
+        }
+    }
+</style>
+
+<div class="profile-page">
+
+    ```
+    <div class="profile-container">
+
+        <div class="profile-header">
+            <h2>User Profile</h2>
+            <p>View and manage your professional profile</p>
+        </div>
+
+        <div>
+            @using (Html.BeginForm("UserProfile_PageLoad", "UserProfile", FormMethod.Get))
+            {
+                <div class="profile-content">
+
+                    <div class="profile-field">
+                        <label>Name:</label>
+                        @Html.TextBoxFor(m => m.name)
+                    </div>
+
+                    <div class="profile-field">
+                        <label>Email:</label>
+                        @Html.TextBoxFor(m => m.email)
+                    </div>
+
+                    <div class="profile-field">
+                        <label>Phone:</label>
+                        @Html.TextBoxFor(m => m.phone)
+                    </div>
+
+                    <div class="profile-field">
+                        <label>Location:</label>
+                        @Html.TextBoxFor(m => m.location)
+                    </div>
+
+                    <div class="profile-field">
+                        <label>Experience:</label>
+                        @Html.TextBoxFor(m => m.experience)
+                    </div>
+
+                    <div class="profile-field">
+                        <label>Qualification:</label>
+                        @Html.TextBoxFor(m => m.qualification)
+                    </div>
+
+                    <div class="document-section">
+
+                        <label>Resume:</label>
+
+                        <div class="resume-links">
+
+                            <a href="@Url.Content(Model.resume)" target="_blank">
+                                📄 View Resume
+                            </a>
+
+                            <a href="@Url.Content(Model.resume)" download>
+                                ⬇ Download Resume
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="photo-section">
+
+                        <label>Profile Photo</label>
+
+                        <img src="@Url.Content(Model.photo)"
+                             alt="Haii"
+                             class="profile-photo" />
+
+                    </div>
+
+                    <div class="button-section">
+
+                        <input type="submit"
+                               value="Update"
+                               class="update-button" />
+
+                        <span class="profile-message">
+                            @Html.DisplayFor(m => m.msg)
+                        </span>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+
+    </div>
+    ```
+
+</div>

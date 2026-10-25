@@ -1,0 +1,210 @@
+﻿@model JobNestMVC.Models.ChangePassword
+@{
+    ViewBag.Title = "ChangePswd_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .password-page {
+        min-height: 80vh;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #f5f7fb, #eaf0ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .password-card {
+        width: 100%;
+        max-width: 450px;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+    }
+
+    .password-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .lock-icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 15px;
+        background: #eef2ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+    }
+
+    .password-header h2 {
+        margin: 0;
+        font-size: 28px;
+        color: #1f2937;
+        font-weight: 700;
+    }
+
+    .password-header p {
+        margin-top: 8px;
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    .password-form > div {
+        margin-bottom: 20px;
+    }
+
+    .password-form label {
+        display: block;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .password-form input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+        font-size: 15px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+        .password-form input[type="text"]:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+    .change-button {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 9px;
+        background: #2563eb;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .change-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+    .message {
+        display: block;
+        text-align: center;
+        margin-top: 12px;
+        color: #16a34a;
+        font-weight: 600;
+    }
+
+    .back-home {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+        .back-home a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+            .back-home a:hover {
+                text-decoration: underline;
+            }
+
+    .security-note {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+        color: #9ca3af;
+        font-size: 12px;
+    }
+
+    @@media (max-width: 500px) {
+        .password-card {
+            padding: 30px 22px;
+        }
+    }
+</style>
+
+<div class="password-page">
+
+    ```
+    <div class="password-card">
+
+        <div class="password-header">
+
+            <div class="lock-icon">
+                🔐
+            </div>
+
+            <h2>Change Your Password</h2>
+
+            <p>Keep your account secure with a strong password</p>
+
+        </div>
+
+        <div>
+            @using (Html.BeginForm("ChangePswd_Update", "ChangePswd", FormMethod.Post))
+            {
+                <div class="password-form">
+
+                    <div>
+                        <label>Old Password:</label>
+                        <div>
+                            @Html.TextBoxFor(m => m.oldpwd)
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>New Password:</label>
+                        <div>
+                            @Html.TextBoxFor(m => m.newpwd)
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Confirm Password:</label>
+                        <div>
+                            @Html.TextBoxFor(m => m.confirmpwd)
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="submit"
+                               value="Change Password"
+                               class="change-button" />
+
+                        <span class="message">
+                            @Html.DisplayFor(m => m.msg)
+                        </span>
+                    </div>
+
+                    <div class="back-home">
+                        @Html.ActionLink("← Back To Home", "Home", "Login")
+                    </div>
+
+                </div>
+
+                <div class="security-note">
+                    🔒 Your password helps protect your account and personal information.
+                </div>
+            }
+        </div>
+
+    </div>
+    ```
+
+</div>
